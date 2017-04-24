@@ -1,0 +1,14 @@
+﻿[
+	{
+		"Url":"http://localhost:8081/api/dict/RefreshDictionary",
+		"HttpMethod":"Post",
+		"Params":"{\"IsHave\":\"false\",\"Hello\":\"Hello\"}",
+		"SleepTime":100
+	},
+	{
+		"Url":"http://localhost:8081/api/dict/RefreshDictionary",
+		"HttpMethod":"Get",
+		"Params":"{\"IsHave\":\"false\",\"Hello\":\"Hello\"}",
+		"SleepTime":10
+	}
+]

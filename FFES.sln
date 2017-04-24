@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFES.Refresh", "FFES\FFES.Refresh\FFES.Refresh.csproj", "{5D98202D-E3AE-4116-A2B9-6B8891D56447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFES.Common", "FFES\FFES.Common\FFES.Common.csproj", "{F5D388CF-7890-4D02-8982-36EAA88CAB95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D98202D-E3AE-4116-A2B9-6B8891D56447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D98202D-E3AE-4116-A2B9-6B8891D56447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D98202D-E3AE-4116-A2B9-6B8891D56447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D98202D-E3AE-4116-A2B9-6B8891D56447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D388CF-7890-4D02-8982-36EAA88CAB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D388CF-7890-4D02-8982-36EAA88CAB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D388CF-7890-4D02-8982-36EAA88CAB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D388CF-7890-4D02-8982-36EAA88CAB95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Console", "Lazywg\Lazywg.Console\Lazywg.Console.csproj", "{664BAE44-B121-4143-BD84-F522057D2241}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Design", "Lazywg\Lazywg.Design\Lazywg.Design.csproj", "{28E181DF-1E5B-41AC-831F-6C991CE6130C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Helper", "Lazywg\Lazywg.Helper\Lazywg.Helper.csproj", "{BAAC2355-8759-4652-8232-380998E6BE38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Lib", "Lazywg\Lazywg.Lib\Lazywg.Lib.csproj", "{4787AC5C-8B61-430A-B21E-D20E1BB27467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Lambda", "Lazywg\Lazywg.Lambda\Lazywg.Lambda.csproj", "{37219DF7-CBBD-4133-90DC-13722522FDC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Common", "Lazywg\Lazywg.Common\Lazywg.Common.csproj", "{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Thread", "Lazywg\Lazywg.Thread\Lazywg.Thread.csproj", "{5EC1D878-D0FC-4F1F-8E93-696E711B65A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Delegate", "Lazywg\Lazywg.Delegate\Lazywg.Delegate.csproj", "{21084F9C-F6A1-4651-9115-D0CD66C22E31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{664BAE44-B121-4143-BD84-F522057D2241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664BAE44-B121-4143-BD84-F522057D2241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664BAE44-B121-4143-BD84-F522057D2241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664BAE44-B121-4143-BD84-F522057D2241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E181DF-1E5B-41AC-831F-6C991CE6130C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E181DF-1E5B-41AC-831F-6C991CE6130C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E181DF-1E5B-41AC-831F-6C991CE6130C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E181DF-1E5B-41AC-831F-6C991CE6130C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAAC2355-8759-4652-8232-380998E6BE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAAC2355-8759-4652-8232-380998E6BE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAAC2355-8759-4652-8232-380998E6BE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAAC2355-8759-4652-8232-380998E6BE38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4787AC5C-8B61-430A-B21E-D20E1BB27467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4787AC5C-8B61-430A-B21E-D20E1BB27467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4787AC5C-8B61-430A-B21E-D20E1BB27467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4787AC5C-8B61-430A-B21E-D20E1BB27467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37219DF7-CBBD-4133-90DC-13722522FDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37219DF7-CBBD-4133-90DC-13722522FDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37219DF7-CBBD-4133-90DC-13722522FDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37219DF7-CBBD-4133-90DC-13722522FDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC1D878-D0FC-4F1F-8E93-696E711B65A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC1D878-D0FC-4F1F-8E93-696E711B65A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC1D878-D0FC-4F1F-8E93-696E711B65A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC1D878-D0FC-4F1F-8E93-696E711B65A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal
