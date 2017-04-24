@@ -134,27 +134,4 @@ namespace ADO.NET.SqlHelper
             return sqlParams;
         }
     }
-
-    public class SqlParam
-    {
-        public string Param { get; set; }
-        public string Value { get; set; }
-        public SqlDbType DbType { get; set; }
-        public ParameterDirection Direction { get; set; }
-        public int Size { get; set; }
-    }
-
-    public class NotSqlParam
-    {
-        public string Param { get; set; }
-    }
-
-    /// <summary>
-    /// 不作为SqlParam特性
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-    public class NotSqlParamAttribute : Attribute
-    {
-
-    }
 }

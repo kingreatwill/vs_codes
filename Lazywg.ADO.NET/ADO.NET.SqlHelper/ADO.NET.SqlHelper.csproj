@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotSqlParam.cs" />
+    <Compile Include="NotSqlParamAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Microsoft\SqlHelper.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="SqlParam.cs" />
     <Compile Include="SqlParamsHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
