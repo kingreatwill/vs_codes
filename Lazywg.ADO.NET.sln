@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.DBImplement", "Lazy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.SqlHelper", "Lazywg.ADO.NET\ADO.NET.SqlHelper\ADO.NET.SqlHelper.csproj", "{00C9D5EC-F97B-4844-B6D9-1DE2BB42732B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.Test", "ADO.NET.Test\ADO.NET.Test.csproj", "{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{00C9D5EC-F97B-4844-B6D9-1DE2BB42732B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C9D5EC-F97B-4844-B6D9-1DE2BB42732B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00C9D5EC-F97B-4844-B6D9-1DE2BB42732B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,6 +19,15 @@ namespace ADO.NET.Common
         {
             return HttpContext.Current.Session[key] as T;
         }
+        /// <summary>
+        /// 获取session值
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static object GetValue(string key)
+        {
+            return HttpContext.Current.Session[key];
+        }
 
         /// <summary>
         /// 设置session值
