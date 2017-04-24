@@ -10,9 +10,13 @@ namespace ADO.NET.SqlHelper
     public class SqlParam
     {
         public string Param { get; set; }
+
         public string Value { get; set; }
-        public SqlDbType DbType { get; set; }
+
+        public SqlDbType SqlType { get; set; }
+
         public ParameterDirection Direction { get; set; }
+
         public int Size { get; set; }
     }
 }

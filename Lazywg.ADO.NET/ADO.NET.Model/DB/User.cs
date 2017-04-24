@@ -1,4 +1,5 @@
-﻿using ADO.NET.SqlHelper;
+﻿using ADO.NET.Common;
+using ADO.NET.SqlHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ADO.NET.Model.DB
 {
     public class User
     {
+        [NotMap]
+        [SqlParam]
         public string ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
@@ -16,7 +19,6 @@ namespace ADO.NET.Model.DB
         public int Age { get; set; }
         public bool IsDelete { get; set; }
 
-        [NotSqlParam]
         public DateTime CreateTime { get; set; }
     }
 }

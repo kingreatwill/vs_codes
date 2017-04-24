@@ -42,13 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper.cs" />
     <Compile Include="CacheHelper.cs" />
     <Compile Include="ConfigReader.cs" />
     <Compile Include="CookieHelper.cs" />
     <Compile Include="DateTimeExtend.cs" />
     <Compile Include="LazywgConfigs.cs" />
     <Compile Include="LazywgException.cs" />
+    <Compile Include="MapAttribute.cs" />
+    <Compile Include="NotMapAttribute.cs" />
     <Compile Include="ObjectFactory.cs" />
+    <Compile Include="PagerHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="TextLogger.cs" />

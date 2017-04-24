@@ -34,7 +34,7 @@ namespace ADO.NET.SqlHelper
                 SqlParameter param = new SqlParameter()
                 {
                     ParameterName = item.Param,
-                    SqlDbType = item.DbType,
+                    SqlDbType = item.SqlType,
                     Value = item.Value,
                     Size = item.Size,
                     Direction = item.Direction
@@ -45,7 +45,8 @@ namespace ADO.NET.SqlHelper
             return sqlParams;
         }
 
-        public static SqlDbType GetSqlDbType(Type type) {
+        public static SqlDbType GetSqlDbType(Type type)
+        {
             SqlDbType sqlTy = SqlDbType.NVarChar;
             DbType dbt = DbType.String;
             if (Enum.TryParse<DbType>(type.Name, true, out dbt))
@@ -69,8 +70,8 @@ namespace ADO.NET.SqlHelper
 
             foreach (var item in props)
             {
-                var attr = item.GetCustomAttributes(typeof(NotSqlParamAttribute));
-                if (attr == null || attr.Count() < 1)
+                SqlParamAttribute attr = item.GetCustomAttribute(typeof(SqlParamAttribute)) as SqlParamAttribute;
+                if (attr == null || attr.IsParam == true)
                 {
                     paramProps.Add(item);
                 }
@@ -82,13 +83,35 @@ namespace ADO.NET.SqlHelper
             foreach (var item in paramProps)
             {
                 object value = item.GetValue(t);
+                string name = item.Name;
+
                 SqlDbType sqlTy = GetSqlDbType(item.PropertyType);
+                ParameterDirection direction = ParameterDirection.Input;
+
+                SqlParamAttribute attr = item.GetCustomAttribute(typeof(SqlParamAttribute)) as SqlParamAttribute;
+
+                if (attr != null)
+                {
+                    if (attr.Direction != default(ParameterDirection))
+                    {
+                        direction = attr.Direction;
+                    }
+                    if (!string.IsNullOrEmpty(attr.Name))
+                    {
+                        name = attr.Name;
+                    }
+                    if (attr.SqlType != default(SqlDbType))
+                    {
+                        sqlTy = attr.SqlType;
+                    }
+                }
+
                 SqlParameter param = new SqlParameter()
                 {
-                    ParameterName = item.Name,
+                    ParameterName = name,
                     SqlDbType = sqlTy,
                     Value = value,
-                    Direction = ParameterDirection.Input
+                    Direction = direction
                 };
                 sqlParams[i] = param;
                 i++;

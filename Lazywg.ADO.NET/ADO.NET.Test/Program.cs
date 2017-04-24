@@ -1,4 +1,5 @@
-﻿using ADO.NET.Model.DB;
+﻿using ADO.NET.Common;
+using ADO.NET.Model.DB;
 using ADO.NET.SqlHelper;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,13 @@ namespace ADO.NET.Test
             {
                 Console.WriteLine(item.ToString());
             }
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            dict.Add("Name", user.Name);
+            dict.Add("ID", user.ID);
+            dict.Add("Age", user.Age);
+
+            User user1 = AutoMapper.MapTo<User>(dict);
+            Console.WriteLine(user1.Name);
 
             Console.ReadLine();
         }

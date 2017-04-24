@@ -50,11 +50,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lazywg.ADO.NET\ADO.NET.Model\ADO.NET.Model.csproj">
+    <ProjectReference Include="..\ADO.NET.Common\ADO.NET.Common.csproj">
+      <Project>{e48d30f1-87c2-40f5-bb54-d7cfa6cfd369}</Project>
+      <Name>ADO.NET.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADO.NET.Model\ADO.NET.Model.csproj">
       <Project>{12ab9910-9a84-41d3-a500-27d829aebc81}</Project>
       <Name>ADO.NET.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lazywg.ADO.NET\ADO.NET.SqlHelper\ADO.NET.SqlHelper.csproj">
+    <ProjectReference Include="..\ADO.NET.SqlHelper\ADO.NET.SqlHelper.csproj">
       <Project>{00c9d5ec-f97b-4844-b6d9-1de2bb42732b}</Project>
       <Name>ADO.NET.SqlHelper</Name>
     </ProjectReference>

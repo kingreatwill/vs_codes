@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NotSqlParamAttribute.cs" />
+    <Compile Include="SqlParamAttribute.cs" />
+    <Compile Include="PagerHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Microsoft\SqlHelper.cs" />
     <Compile Include="SqlHelper.cs" />

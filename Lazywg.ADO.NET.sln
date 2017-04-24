@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.DBImplement", "Lazy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.SqlHelper", "Lazywg.ADO.NET\ADO.NET.SqlHelper\ADO.NET.SqlHelper.csproj", "{00C9D5EC-F97B-4844-B6D9-1DE2BB42732B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.Test", "ADO.NET.Test\ADO.NET.Test.csproj", "{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET.Test", "Lazywg.ADO.NET\ADO.NET.Test\ADO.NET.Test.csproj", "{F81AA8F6-C4C6-48ED-8059-B8F7D42B3CB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

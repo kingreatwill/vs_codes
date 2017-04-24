@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.DBImplement
 {
-    public class Class1
+    public class UserImp
     {
+
     }
 }
