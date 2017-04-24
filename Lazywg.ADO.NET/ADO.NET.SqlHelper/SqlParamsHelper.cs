@@ -45,82 +45,44 @@ namespace ADO.NET.SqlHelper
             return sqlParams;
         }
 
-        public static SqlParameter[] GetSqlParams<T>(T t, List<NotSqlParam> notSqlMap) where T : class
-        {
-
-            Type type = typeof(T);
-            PropertyInfo[] props = type.GetProperties();
-            List<PropertyInfo> needParamProps = new List<PropertyInfo>();
-
-            foreach (var item in props)
+        public static SqlDbType GetSqlDbType(Type type) {
+            SqlDbType sqlTy = SqlDbType.NVarChar;
+            DbType dbt = DbType.String;
+            if (Enum.TryParse<DbType>(type.Name, true, out dbt))
             {
-                if (notSqlMap == null || notSqlMap.Count < 1)
-                {
-                    needParamProps.Add(item);
-                    continue;
-                }
-                var ishave = notSqlMap.Select(it => it.Param.Equals(item.Name));
-                if (ishave == null || ishave.Count() < 1)
-                {
-                    needParamProps.Add(item);
-                }
+                sqlTy = DbTypeToSqlDbType(dbt);
             }
-
-            SqlParameter[] sqlParams = new SqlParameter[needParamProps.Count];
-
-            int i = 0;
-            foreach (var item in needParamProps)
-            {
-                object value = item.GetValue(t);
-                Type ty = item.PropertyType;
-                SqlDbType sqlTy = SqlDbType.NVarChar;
-                DbType dbt = DbType.String;
-                if (Enum.TryParse<DbType>(ty.Name, true, out dbt))
-                {
-                    sqlTy = DbTypeToSqlDbType(dbt);
-                }
-                SqlParameter param = new SqlParameter()
-                {
-                    ParameterName = item.Name,
-                    SqlDbType = sqlTy,
-                    Value = value,
-                    Direction = ParameterDirection.Input
-                };
-                sqlParams[i] = param;
-                i++;
-            }
-            return sqlParams;
+            return sqlTy;
         }
 
+        /// <summary>
+        /// 泛型 NotSqlParamAttribute 过滤
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static SqlParameter[] GetSqlParams<T>(T t) where T : class
         {
-
             Type type = typeof(T);
             PropertyInfo[] props = type.GetProperties();
-            List<PropertyInfo> needParamProps = new List<PropertyInfo>();
+            List<PropertyInfo> paramProps = new List<PropertyInfo>();
 
             foreach (var item in props)
             {
                 var attr = item.GetCustomAttributes(typeof(NotSqlParamAttribute));
                 if (attr == null || attr.Count() < 1)
                 {
-                    needParamProps.Add(item);
+                    paramProps.Add(item);
                 }
             }
 
-            SqlParameter[] sqlParams = new SqlParameter[needParamProps.Count];
+            SqlParameter[] sqlParams = new SqlParameter[paramProps.Count];
 
             int i = 0;
-            foreach (var item in needParamProps)
+            foreach (var item in paramProps)
             {
                 object value = item.GetValue(t);
-                Type ty = item.PropertyType;
-                SqlDbType sqlTy = SqlDbType.NVarChar;
-                DbType dbt = DbType.String;
-                if (Enum.TryParse<DbType>(ty.Name, true, out dbt))
-                {
-                    sqlTy = DbTypeToSqlDbType(dbt);
-                }
+                SqlDbType sqlTy = GetSqlDbType(item.PropertyType);
                 SqlParameter param = new SqlParameter()
                 {
                     ParameterName = item.Name,
