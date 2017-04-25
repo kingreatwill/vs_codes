@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Thread", "Lazywg\Laz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Delegate", "Lazywg\Lazywg.Delegate\Lazywg.Delegate.csproj", "{21084F9C-F6A1-4651-9115-D0CD66C22E31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazywg.Facade", "Lazywg\Lazywg.Facade\Lazywg.Facade.csproj", "{9DD18269-B4E5-4F72-A175-92BC1D387209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21084F9C-F6A1-4651-9115-D0CD66C22E31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD18269-B4E5-4F72-A175-92BC1D387209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD18269-B4E5-4F72-A175-92BC1D387209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD18269-B4E5-4F72-A175-92BC1D387209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD18269-B4E5-4F72-A175-92BC1D387209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

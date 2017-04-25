@@ -16,6 +16,8 @@ namespace ADO.NET.SqlHelper
     {
         public bool IsParam { get; set; }
 
+        public bool IsPK { get; set; }
+
         public string Name { get; set; }
 
         public int Size { get; set; }
