@@ -20,7 +20,7 @@ namespace ADO.NET.Common
         /// <typeparam name="E"></typeparam>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public static T MapTo<T, E>(E entity) where E : new()
+        public static T MapTo<T, E>(E entity)
         {
             Type tType = typeof(T);
             Type eType = typeof(E);
@@ -51,7 +51,7 @@ namespace ADO.NET.Common
             return t;
         }
 
-        public static E MapTo<E>(DataRow row) where E : new()
+        public static E MapTo<E>(DataRow row)
         {
             E entiry = Activator.CreateInstance<E>();
             PropertyInfo[] props = typeof(E).GetProperties();
@@ -77,7 +77,7 @@ namespace ADO.NET.Common
             return entiry;
         }
 
-        public static E MapTo<E>(Dictionary<string, object> dict) where E : new()
+        public static E MapTo<E>(Dictionary<string, object> dict)
         {
             E entiry = Activator.CreateInstance<E>();
             PropertyInfo[] props = typeof(E).GetProperties();
@@ -109,7 +109,7 @@ namespace ADO.NET.Common
             return entiry;
         }
 
-        public static List<E> MapToList<E>(DataTable table) where E : new()
+        public static List<E> MapToList<E>(DataTable table)
         {
             List<E> list = new List<E>();
 

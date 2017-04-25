@@ -34,7 +34,7 @@ namespace ADO.NET.SqlHelper
                 SqlParameter param = new SqlParameter()
                 {
                     ParameterName = item.Param,
-                    SqlDbType = item.SqlType,
+                    SqlDbType = DbTypeToSqlDbType(item.SqlType),
                     Value = item.Value,
                     Size = item.Size,
                     Direction = item.Direction

@@ -43,6 +43,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserImp.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADO.NET.DBInterface\ADO.NET.DBInterface.csproj">
+      <Project>{65891fc9-b202-4ae0-8cd0-a67664c21487}</Project>
+      <Name>ADO.NET.DBInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADO.NET.SqlHelper\ADO.NET.SqlHelper.csproj">
+      <Project>{00c9d5ec-f97b-4844-b6d9-1de2bb42732b}</Project>
+      <Name>ADO.NET.SqlHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

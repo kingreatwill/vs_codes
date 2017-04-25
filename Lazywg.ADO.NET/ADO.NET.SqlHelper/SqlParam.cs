@@ -13,7 +13,7 @@ namespace ADO.NET.SqlHelper
 
         public string Value { get; set; }
 
-        public SqlDbType SqlType { get; set; }
+        public DbType SqlType { get; set; }
 
         public ParameterDirection Direction { get; set; }
 
