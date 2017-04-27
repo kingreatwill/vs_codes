@@ -59,7 +59,7 @@ namespace Lazywg.Common
     {
         public List<object> Content { get; set; }
 
-        public PageHelper Page { get; set; }
+        public PagerHelper Page { get; set; }
     }
 
     /// <summary>

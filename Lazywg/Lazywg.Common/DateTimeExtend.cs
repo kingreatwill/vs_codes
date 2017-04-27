@@ -6,28 +6,15 @@ using System.Threading.Tasks;
 
 namespace Lazywg.Common
 {
-    /// <summary>
-    /// 时间扩展
-    /// </summary>
     public static class DateTimeExtend
     {
-        /// <summary>
-        /// 日期转yyyy-mm-dd字符串
-        /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
-        public static string ToShortSimpleDateString(this DateTime time) {
-            return time.ToString("yyyy-MM-dd");
+        public static string ToSimpleDateStr(this DateTime dt) {
+            return dt.ToString("yyyyMMdd");
         }
 
-        /// <summary>
-        /// 日期转yyyy-mm-dd hh:mm:ss字符串
-        /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
-        public static string ToSimpleDateString(this DateTime time)
+        public static string ToLongDateStr(this DateTime dt)
         {
-            return time.ToString("yyyy-MM-dd HH:mm:ss");
+            return dt.ToString("yyyy-MM-dd HH:mm:ss:fffffff");
         }
     }
 }

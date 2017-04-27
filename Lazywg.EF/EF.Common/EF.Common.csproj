@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D550EB0A-D380-45D3-96E3-754F5DF8AFB6}</ProjectGuid>
+    <ProjectGuid>{24E6AE05-2979-4469-9E67-07DD41F126CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lazywg.Common</RootNamespace>
-    <AssemblyName>Lazywg.Common</AssemblyName>
+    <RootNamespace>EF.Common</RootNamespace>
+    <AssemblyName>EF.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,24 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapper.cs" />
-    <Compile Include="CacheHelper.cs" />
-    <Compile Include="ConfigReader.cs" />
-    <Compile Include="CookieHelper.cs" />
-    <Compile Include="DateTimeExtend.cs" />
-    <Compile Include="LazywgConfigs.cs" />
-    <Compile Include="LazywgException.cs" />
-    <Compile Include="LazywgHandler.cs" />
-    <Compile Include="LazywgHandlerAttribute.cs" />
-    <Compile Include="MapAttribute.cs" />
-    <Compile Include="NotMapAttribute.cs" />
-    <Compile Include="ObjectFactory.cs" />
-    <Compile Include="PagerHelper.cs" />
-    <Compile Include="ResultFormateAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionHelper.cs" />
-    <Compile Include="TestHandler.cs" />
-    <Compile Include="TextLogger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
