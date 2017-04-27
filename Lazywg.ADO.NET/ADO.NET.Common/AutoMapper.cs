@@ -66,12 +66,20 @@ namespace ADO.NET.Common
             }
             foreach (var item in toProps)
             {
-                Type propType = item.PropertyType;
-                string propName = item.Name;
                 object value = row[item.Name];
                 if (value != null)
                 {
-                    item.SetValue(entiry, value);
+                    if (value.GetType()!= typeof(DBNull))
+                    {
+                        if (item.PropertyType == typeof(Guid))
+                        {
+                            item.SetValue(entiry, new Guid(value.ToString()));
+                        }
+                        else
+                        {
+                            item.SetValue(entiry, value);
+                        }
+                    }
                 }
             }
             return entiry;
@@ -93,15 +101,19 @@ namespace ADO.NET.Common
 
             foreach (var item in toProps)
             {
-                Type propType = item.PropertyType;
                 object value = null;
-                dict.TryGetValue(item.Name,out value);
-                if (value != null)
+                if (dict.TryGetValue(item.Name, out value))
                 {
-                    item.SetValue(entiry, value);
+                    if (item.PropertyType==typeof(Guid))
+                    {
+                        item.SetValue(entiry, new Guid(value.ToString()));
+                    }else
+                    {
+                        item.SetValue(entiry, value);
+                    }
                     continue;
                 }
-                if (propType == typeof(DateTime))
+                if (item.PropertyType == typeof(DateTime))
                 {
                     item.SetValue(entiry, LazywgConfigs.DefaultTime);
                 }

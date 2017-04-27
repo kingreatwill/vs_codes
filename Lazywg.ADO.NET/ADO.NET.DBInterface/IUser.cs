@@ -7,7 +7,7 @@ using ADO.NET.SqlHelper;
 
 namespace ADO.NET.DBInterface
 {
-    public interface IUser : IBase
+    public interface IUser
     {
         
     }

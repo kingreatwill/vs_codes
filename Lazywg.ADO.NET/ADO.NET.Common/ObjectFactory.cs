@@ -16,7 +16,7 @@ namespace ADO.NET.Common
         private static ObjectFactory _instance = new ObjectFactory();
         private ObjectFactory() { }
 
-        public ObjectFactory Instance
+        public static ObjectFactory Instance
         {
             get
             {
@@ -34,26 +34,32 @@ namespace ADO.NET.Common
             }
         }
 
-        public T CreateObject<T>(params object[] parms) where T : class
+        public T CreateObject<T>(params object[] parms) where T : class,new()
         {
             Type type = typeof(T);
             string key = type.FullName;
-            T t = _dicts[key] as T;
-            if (t != null)
+            object t = null;
+            if (_dicts.TryGetValue(key, out t))
             {
-                return t;
+                return t as T;
             }
-            t = Activator.CreateInstance(type, parms) as T;
             lock (_locker)
             {
-                t = _dicts[key] as T;
-                if (t != null)
+                if (_dicts.TryGetValue(key, out t))
                 {
-                    return t;
+                    return t as T;
+                }
+                if (parms == null)
+                {
+                    t = Activator.CreateInstance(type) as T;
+                }
+                else
+                {
+                    t = Activator.CreateInstance(type, parms) as T;
                 }
                 _dicts.Add(key, t);
             }
-            return t;
+            return t as T;
         }
     }
 }

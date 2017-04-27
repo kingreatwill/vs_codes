@@ -8,7 +8,7 @@ using ADO.NET.SqlHelper;
 
 namespace ADO.NET.DBImplement
 {
-    public class UserImp : BaseImp, IUser
+    public class UserImp
     {
 
     }

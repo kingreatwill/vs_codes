@@ -7,13 +7,28 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.SqlHelper
 {
+    /// <summary>
+    /// 分页帮助类
+    /// </summary>
     public class PagerHelper
     {
+        /// <summary>
+        /// 页码
+        /// </summary>
         [SqlParam(IsParam = false)]
         public int PageIndex { get; set; }
 
+        /// <summary>
+        /// 条数
+        /// </summary>
         [SqlParam(IsParam = false)]
-        public int PageSize
+        public int PageSize { get; set; }
+
+        /// <summary>
+        /// 页数
+        /// </summary>
+        [SqlParam(IsParam = false)]
+        public int PageCount
         {
             get
             {
@@ -21,12 +36,9 @@ namespace ADO.NET.SqlHelper
             }
         }
 
-        [SqlParam(IsParam = false)]
-        public int PageCount { get; set; }
-
-        [SqlParam(IsParam = true, Direction = ParameterDirection.Output)]
-        public int DataCount { get; set; }
-
+        /// <summary>
+        /// 开始下标
+        /// </summary>
         public int StartIndex
         {
             get
@@ -35,6 +47,9 @@ namespace ADO.NET.SqlHelper
             }
         }
 
+        /// <summary>
+        /// 结束下标
+        /// </summary>
         public int EndIndex
         {
             get
@@ -44,8 +59,15 @@ namespace ADO.NET.SqlHelper
         }
 
         /// <summary>
-        /// 排序
+        /// 排序 如:Name asc,ID desc
         /// </summary>
         public string Order { get; set; }
+
+        /// <summary>
+        /// 数据量
+        /// </summary>
+        [SqlParam(IsParam = true, Direction = ParameterDirection.Output)]
+        public int DataCount { get; set; }
+
     }
 }

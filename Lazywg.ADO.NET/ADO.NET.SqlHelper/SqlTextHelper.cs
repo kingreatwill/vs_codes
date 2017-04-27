@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.SqlHelper
 {
+    /// <summary>
+    /// sql 文本命令帮助类
+    /// </summary>
     public class SqlTextHelper
     {
+        /// <summary>
+        /// 获取插入命令文本
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static string GetInsertSqlText<T>(T t)
         {
             Type type = typeof(T);
@@ -24,9 +33,15 @@ namespace ADO.NET.SqlHelper
                 }
             }
 
-            return GetSqlInsert(type.Name, paramProps) + GetSqlInsertValues<T>(paramProps,t);
+            return GetSqlInsert(type.Name, paramProps) + GetSqlInsertValues<T>(paramProps, t);
         }
 
+        /// <summary>
+        /// 获取更新命令文本
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public static string GetUpdateSqlText<T>(T t)
         {
             Type type = typeof(T);
@@ -55,31 +70,38 @@ namespace ADO.NET.SqlHelper
                 throw new ArgumentNullException(string.Format("{0}的主键不可为空", type.Name));
             }
 
-            return string.Format(" update table {0} ", type.Name) + GetSqlUpdateSet<T>(paramProps,t) + GetSqlWhere<T>(pkProps,t);
+            return string.Format(" update dbo.[{0}] {1} {2}", type.Name,GetSqlUpdateSet<T>(paramProps, t),GetSqlWhere<T>(pkProps, t));
         }
 
+        /// <summary>
+        /// 获取更新命令文本
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="update"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public static string GetUpdateSqlText<T>(List<SqlParam> update, List<SqlParam> where)
         {
             Type type = typeof(T);
-            return string.Format(" update table {0}  ", type.Name) + GetSqlUpdateSet(update) + GetSqlWhere(where);
+            return string.Format(" update dbo.[{0}] {1} {2} ", type.Name, GetSqlUpdateSet(update),GetSqlWhere(where));
         }
 
+        /// <summary>
+        /// 获取删除文本
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="where"></param>
+        /// <returns></returns>
         public static string GetDeleteSqlText<T>(List<SqlParam> where)
         {
             Type type = typeof(T);
-            StringBuilder sqlBuilder = new StringBuilder();
-            sqlBuilder.AppendFormat(" delete from {0} ", type.Name);
-
-            return sqlBuilder.ToString() + GetSqlWhere(where);
+            return string.Format(" delete from dbo.[{0}] {1} ", type.Name, GetSqlWhere(where));
         }
 
         public static string GetDeleteSqlText<T>(string sqlWhere)
         {
             Type type = typeof(T);
-            StringBuilder sqlBuilder = new StringBuilder();
-            sqlBuilder.AppendFormat(" delete from {0} where ", type.Name);
-            sqlBuilder.Append(sqlWhere);
-            return sqlBuilder.ToString();
+            return string.Format(" delete from dbo.[{0}] where 1=1 {1} ", type.Name, sqlWhere);
         }
 
         public static string GetSelectSqlText<T>(List<SqlParam> where)
@@ -95,7 +117,7 @@ namespace ADO.NET.SqlHelper
                     paramProps.Add(item);
                 }
             }
-            return string.Format("select {0} from {1} {2} ", GetSqlField(paramProps), type.Name, GetSqlWhere(where));
+            return string.Format("select {0} from dbo.[{1}] {2} ", GetSqlField(paramProps), type.Name, GetSqlWhere(where));
         }
 
         public static string GetSelectSqlText<T>(string sqlWhere)
@@ -111,17 +133,52 @@ namespace ADO.NET.SqlHelper
                     paramProps.Add(item);
                 }
             }
-            return string.Format("select {0} from {1} where 1=1 and {2} ", GetSqlField(paramProps), type.Name,sqlWhere);
+            return string.Format("select {0} from dbo.[{1}] where 1=1 {2} ", GetSqlField(paramProps), type.Name, sqlWhere);
         }
 
         public static string GetSelectPagerSqlText<T>(List<SqlParam> where, PagerHelper pager)
         {
-            throw new NotImplementedException();
+            Type type = typeof(T);
+            PropertyInfo[] props = type.GetProperties();
+            List<PropertyInfo> paramProps = new List<PropertyInfo>();
+            foreach (var item in props)
+            {
+                SqlParamAttribute attr = item.GetCustomAttribute(typeof(SqlParamAttribute)) as SqlParamAttribute;
+                if (attr == null || attr.IsParam == true)
+                {
+                    paramProps.Add(item);
+                }
+            }
+            return string.Format(" select {0} from(select {0},row_number()over(order by {1}) as RowIndex from dbo.[{2}] {3}) as t where RowIndex betwen {4} and {5} ", GetSqlField(paramProps), pager.Order, type.Name, GetSqlWhere(where), pager.StartIndex, pager.EndIndex);
         }
 
         public static string GetSelectPagerSqlText<T>(string sqlWhere, PagerHelper pager)
         {
-            throw new NotImplementedException();
+            Type type = typeof(T);
+            PropertyInfo[] props = type.GetProperties();
+            List<PropertyInfo> paramProps = new List<PropertyInfo>();
+            foreach (var item in props)
+            {
+                SqlParamAttribute attr = item.GetCustomAttribute(typeof(SqlParamAttribute)) as SqlParamAttribute;
+                if (attr == null || attr.IsParam == true)
+                {
+                    paramProps.Add(item);
+                }
+            }
+            return string.Format(" select {0} from(select {0},row_number()over(order by {1}) as RowIndex from dbo.[{2}] where 1=1 {3}) as t where RowIndex betwen {4} and {5} ", GetSqlField(paramProps), pager.Order, type.Name,sqlWhere, pager.StartIndex, pager.EndIndex);
+
+        }
+
+        public static string GetSelectCountSqlText<T>(string where)
+        {
+            Type type = typeof(T);
+            return string.Format("select count(1) from dbo.[{0}] where 1=1 {1} ", type.Name, where);
+        }
+
+        public static string GetSelectCountSqlText<T>(List<SqlParam> where)
+        {
+            Type type = typeof(T);
+            return string.Format("select count(1) from dbo.[{0}] {1} ", type.Name, GetSqlWhere(where));
         }
 
         private static string GetSqlWhere(List<SqlParam> where)
@@ -129,31 +186,17 @@ namespace ADO.NET.SqlHelper
             StringBuilder whereBuilder = new StringBuilder();
             foreach (var item in where)
             {
-                if (whereBuilder.ToString().Length < 1)
+                if (GetSqlTypeIsNeedChar(item.SqlType))
                 {
-                    if (GetSqlTypeIsNeedChar(item.SqlType))
-                    {
-                        whereBuilder.AppendFormat(" {0}='{1}'", item.Param, item.Value);
-                    }
-                    else
-                    {
-                        whereBuilder.AppendFormat(" {0}={1}", item.Param, item.Value);
-                    }
+                    whereBuilder.AppendFormat(" and {0}='{1}'", item.Param, item.Value);
                 }
                 else
                 {
-                    if (GetSqlTypeIsNeedChar(item.SqlType))
-                    {
-                        whereBuilder.AppendFormat(" and {0}='{1}'", item.Param, item.Value);
-                    }
-                    else
-                    {
-                        whereBuilder.AppendFormat(" and {0}={1}", item.Param, item.Value);
-                    }
+                    whereBuilder.AppendFormat(" and {0}={1}", item.Param, item.Value);
                 }
             }
 
-            return " where " + whereBuilder.ToString();
+            return " where 1=1 " + whereBuilder.ToString();
         }
 
         private static string GetSqlWhere<T>(List<PropertyInfo> where, T t)
@@ -161,39 +204,25 @@ namespace ADO.NET.SqlHelper
             StringBuilder whereBuilder = new StringBuilder();
             foreach (var item in where)
             {
-                if (whereBuilder.ToString().Length < 1)
+                if (GetSqlTypeIsNeedChar(item.PropertyType))
                 {
-                    if (GetSqlTypeIsNeedChar(item.PropertyType))
-                    {
-                        whereBuilder.AppendFormat(" {0}='{1}'", item.Name, item.GetValue(t));
-                    }
-                    else
-                    {
-                        whereBuilder.AppendFormat(" {0}={1}", item.Name, item.GetValue(t));
-                    }
+                    whereBuilder.AppendFormat(" and {0}='{1}'", item.Name, item.GetValue(t));
                 }
                 else
                 {
-                    if (GetSqlTypeIsNeedChar(item.PropertyType))
-                    {
-                        whereBuilder.AppendFormat(" and {0}='{1}'", item.Name, item.GetValue(t));
-                    }
-                    else
-                    {
-                        whereBuilder.AppendFormat(" and {0}={1}", item.Name, item.GetValue(t));
-                    }
+                    whereBuilder.AppendFormat(" and {0}={1}", item.Name, item.GetValue(t));
                 }
             }
 
-            return " where " + whereBuilder.ToString();
+            return " where 1=1 " + whereBuilder.ToString();
         }
 
         private static string GetSqlInsert(string tableName, List<PropertyInfo> props)
         {
-            return string.Format(" insert into {0} (", tableName) + GetSqlField(props) + ") ";
+            return string.Format(" insert into dbo.[{0}] ({1})", tableName, GetSqlField(props));
         }
 
-        private static string GetSqlUpdateSet<T>(List<PropertyInfo> props,T t)
+        private static string GetSqlUpdateSet<T>(List<PropertyInfo> props, T t)
         {
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.Append(" set ");
@@ -209,7 +238,7 @@ namespace ADO.NET.SqlHelper
                 }
             }
             string sqlStr = sqlBuilder.ToString();
-           return sqlStr.Substring(0, sqlStr.Length - 1);
+            return sqlStr.Substring(0, sqlStr.Length - 1);
         }
 
         private static string GetSqlUpdateSet(List<SqlParam> props)
@@ -231,13 +260,12 @@ namespace ADO.NET.SqlHelper
             return sqlStr.Substring(0, sqlStr.Length - 1);
         }
 
-        private static string GetSqlInsertValues<T>(List<PropertyInfo> props,T t)
+        private static string GetSqlInsertValues<T>(List<PropertyInfo> props, T t)
         {
             StringBuilder sqlBuilder = new StringBuilder();
-            sqlBuilder.Append(" values(");
             foreach (var item in props)
             {
-                if (item.PropertyType == typeof(DateTime) || item.PropertyType == typeof(string))
+                if (GetSqlTypeIsNeedChar(item.PropertyType))
                 {
                     sqlBuilder.AppendFormat("'{0}',", item.GetValue(t));
                 }
@@ -248,7 +276,7 @@ namespace ADO.NET.SqlHelper
             }
             string sqlStr = sqlBuilder.ToString();
             sqlStr = sqlStr.Substring(0, sqlStr.Length - 1);
-            return sqlStr + ")";
+            return string.Format(" values({0})", sqlBuilder.ToString());
         }
 
         private static string GetSqlField(List<PropertyInfo> props)
@@ -285,13 +313,14 @@ namespace ADO.NET.SqlHelper
             return sqlBuilder.ToString();
         }
 
-        private static bool GetSqlTypeIsNeedChar(DbType type) {
-            return type == DbType.String || type == DbType.DateTime;
+        private static bool GetSqlTypeIsNeedChar(DbType type)
+        {
+            return type == DbType.String || type == DbType.DateTime || type == DbType.Boolean||type==DbType.Guid||type==DbType.Date;
         }
 
         private static bool GetSqlTypeIsNeedChar(Type type)
         {
-          return type == typeof(DateTime) || type == typeof(string);
+            return type == typeof(DateTime) || type == typeof(string) || type == typeof(bool) || type==typeof(Guid);
         }
     }
 }

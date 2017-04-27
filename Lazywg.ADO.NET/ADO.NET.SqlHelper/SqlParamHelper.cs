@@ -9,31 +9,37 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.SqlHelper
 {
-    public class SqlParamsHelper
+    public class SqlParamHelper
     {
-        public static SqlDbType DbTypeToSqlDbType(DbType pSourceType)
+        public static SqlDbType DbTypeToSqlDbType(DbType sqlType)
         {
-            SqlParameter paraConver = new SqlParameter();
-            paraConver.DbType = pSourceType;
-            return paraConver.SqlDbType;
+            SqlParameter parm = new SqlParameter();
+            parm.DbType = sqlType;
+            return parm.SqlDbType;
         }
 
-        public static DbType SqlDbTypeToDbType(SqlDbType pSourceType)
+        public static DbType SqlDbTypeToDbType(SqlDbType sqlType)
         {
-            SqlParameter paraConver = new SqlParameter();
-            paraConver.SqlDbType = pSourceType;
-            return paraConver.DbType;
+            SqlParameter parm = new SqlParameter();
+            parm.SqlDbType = sqlType;
+            return parm.DbType;
         }
 
         public static SqlParameter[] GetSqlParams(List<SqlParam> paramList)
         {
+            if (paramList==null||paramList.Count<1)
+            {
+                return null;
+            }
+            paramList = paramList.OrderBy(item => item.SortNum).ToList();
+
             SqlParameter[] sqlParams = new SqlParameter[paramList.Count];
             int i = 0;
             foreach (var item in paramList)
             {
                 SqlParameter param = new SqlParameter()
                 {
-                    ParameterName = item.Param,
+                    ParameterName = "@" + item.Param,
                     SqlDbType = DbTypeToSqlDbType(item.SqlType),
                     Value = item.Value,
                     Size = item.Size,
@@ -62,7 +68,7 @@ namespace ADO.NET.SqlHelper
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
         /// <returns></returns>
-        public static SqlParameter[] GetSqlParams<T>(T t) where T : class
+        public static SqlParameter[] GetSqlParams<T>(T t)
         {
             Type type = typeof(T);
             PropertyInfo[] props = type.GetProperties();
@@ -108,7 +114,7 @@ namespace ADO.NET.SqlHelper
 
                 SqlParameter param = new SqlParameter()
                 {
-                    ParameterName = name,
+                    ParameterName = @"@" + name,
                     SqlDbType = sqlTy,
                     Value = value,
                     Direction = direction
@@ -117,6 +123,44 @@ namespace ADO.NET.SqlHelper
                 i++;
             }
             return sqlParams;
+        }
+
+        public static List<SqlParam> GetSqlParams(Dictionary<string, object> parmDict)
+        {
+            if (parmDict==null||parmDict.Count<1)
+            {
+                return null;
+            }
+            List<SqlParam> parms = new List<SqlParam>();
+            foreach (var item in parmDict)
+            {
+                parms.Add(GetSqlParam(item.Key, item.Value));
+            }
+            return parms;
+        }
+
+        public static SqlParam GetSqlParam(string paramName, object paramValue)
+        {
+            SqlParameter parm = new SqlParameter(paramName, paramValue);
+            return GetSqlParam(paramName, paramValue, parm.DbType, parm.Direction, parm.Size);
+        }
+
+        public static SqlParam GetSqlParam(string paramName, object paramValue, DbType dbType)
+        {
+            SqlParameter parm = new SqlParameter(paramName, paramValue);
+            parm.DbType = dbType;
+            return GetSqlParam(paramName, paramValue, parm.DbType, parm.Direction, parm.Size);
+        }
+        public static SqlParam GetSqlParam(string paramName, object paramValue, DbType dbType, ParameterDirection direction)
+        {
+            SqlParameter parm = new SqlParameter(paramName, paramValue);
+            parm.DbType = dbType;
+            parm.Direction = direction;
+            return GetSqlParam(paramName, paramValue, parm.DbType, parm.Direction, parm.Size);
+        }
+        public static SqlParam GetSqlParam(string paramName, object paramValue, DbType dbType, ParameterDirection direction, int size)
+        {
+            return new SqlParam() { Param = @"@" + paramName, Value = paramValue, SqlType = dbType, Direction = direction, Size = size };
         }
     }
 }
