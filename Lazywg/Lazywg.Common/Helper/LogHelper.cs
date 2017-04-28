@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Lazywg.Common.Extend;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lazywg.Common.Helper
 {
@@ -106,7 +103,7 @@ namespace Lazywg.Common.Helper
         /// <returns></returns>
         private string GetFileName()
         {
-            return Path.Combine(LazywgConfigs.LogPath, string.Format("{0}_{1}.log", _logType, LazywgConfigs.NowTime.ToSimpleDateStr()));
+            return Path.Combine(LazywgConfigs.LogPath, string.Format("{0}_{1}.log", _logType, LazywgConfigs.NowTime.ToSimpleDateStr1()));
         }
     }
 }

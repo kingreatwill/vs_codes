@@ -24,12 +24,14 @@ namespace Lazywg.Common.Helper
         {
             get
             {
-
                 if (_instance == null)
                 {
                     lock (_locker)
                     {
-                        _instance = new QRCodeHelper();
+                        if (_instance==null)
+                        {
+                            _instance = new QRCodeHelper();
+                        }
                     }
                 }
 

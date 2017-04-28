@@ -44,11 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
+    <Compile Include="MethodCall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="method.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lazywg.Common\Lazywg.Common.csproj">
@@ -66,6 +71,10 @@
     <ProjectReference Include="..\Lazywg.Lambda\Lazywg.Lambda.csproj">
       <Project>{37219df7-cbbd-4133-90dc-13722522fdc0}</Project>
       <Name>Lazywg.Lambda</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lazywg.Study\Lazywg.Study.csproj">
+      <Project>{2f84f1c1-2a0c-436c-9488-fe515310d4ee}</Project>
+      <Name>Lazywg.Study</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lazywg.Thread\Lazywg.Thread.csproj">
       <Project>{5ec1d878-d0fc-4f1f-8e93-696e711b65a3}</Project>

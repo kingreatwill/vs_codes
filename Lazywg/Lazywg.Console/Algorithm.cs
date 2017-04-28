@@ -26,11 +26,12 @@ namespace Lazywg.Console
         /// 有5个Aspx页面，分别为"Page_1.aspx","Page_10.aspx","Page_100.aspx","Page_11.aspx","Page_111.aspx",请编写代码，让5个Aspx页面按下面的顺序输出:
         /// Page_1.aspx Page_10.aspx Page_11.aspx  Page_100.aspx Page_111.aspx
         /// </summary>
-        public static void StrOrder()
+        public static string[] StrOrder()
         {
             var pageList = new[] { "Page_1.aspx", "Page_10.aspx", "Page_100.aspx", "Page_11.aspx", "Page_111.aspx" };
             pageList = pageList.OrderBy(s => int.Parse(Regex.Match(s, @"\d+").Value)).ToArray();
-            Array.ForEach(pageList, System.Console.WriteLine);
+            //Array.ForEach(pageList, System.Console.WriteLine);
+            return pageList;
         }
 
         /// <summary>
@@ -168,6 +169,10 @@ namespace Lazywg.Console
             //result = (from c in result orderby random.Next(0, 51) descending select c).ToList();
             result = (from c in result orderby Guid.NewGuid() descending select c).ToList();
             result.ForEach(str => System.Console.Write("{0}\t", str));
+        }
+
+        public void WriterUser(User user) {
+            System.Console.WriteLine("{0},{1},{2}",user.ID,user.Name,user.CreateTime);
         }
     }
 }

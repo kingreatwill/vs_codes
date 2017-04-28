@@ -58,7 +58,7 @@
     <Compile Include="Helper\CacheHelper.cs" />
     <Compile Include="ConfigReader.cs" />
     <Compile Include="Helper\CookieHelper.cs" />
-    <Compile Include="DateTimeExtend.cs" />
+    <Compile Include="Extend\DateTimeExtend.cs" />
     <Compile Include="Helper\DictionaryHelper.cs" />
     <Compile Include="Helper\FormateHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
@@ -79,6 +79,11 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="TestHandler.cs" />
     <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Request\MethodCall.cs" />
+    <Compile Include="Request\RequestMethod.cs" />
+    <Compile Include="Request\RequestMethodConfig.cs" />
+    <Compile Include="Request\RequestParseHelper.cs" />
+    <Compile Include="Helper\XmlHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

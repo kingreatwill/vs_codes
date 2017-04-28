@@ -42,13 +42,15 @@ namespace Lazywg.Study
     public class TestImplicit
     {
 
-        public void Test()
+        public void Test(string str)
         {
 
             //隐式转换
-            ImplicitExpl strExt = "nihao";
+            ImplicitExpl strExt = str;
+
             //隐式转换
-            string str = new ImplicitExpl("nihao");
+            string str1 = new ImplicitExpl(str);
+            Console.WriteLine(str1);
 
             //显示转换
             double dou = (double)new ImplicitExpl("123");

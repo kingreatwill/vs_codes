@@ -40,25 +40,34 @@ namespace Lazywg.Common.Helper
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string JSONSerializee<T>(object obj)
+        public static string JSONSerialize(object obj)
         {
             JavaScriptSerializer Serializer = new JavaScriptSerializer();
             return Serializer.Serialize(obj);
         }
 
         /// <summary>
-        /// DataContractJsonSerializer 反序列化
+        /// DataContractJsonSerializer 反序列化 不支持转Dictionary<string,object>
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
         public static T Deserialize<T>(string json)
         {
-            T obj = Activator.CreateInstance<T>();
+            //T obj = Activator.CreateInstance<T>();
             using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
                 return (T)serializer.ReadObject(ms);
+            }
+        }
+
+        public static object Deserialize(object json,Type type)
+        {
+            using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json.ToString())))
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(type);
+                return serializer.ReadObject(ms);
             }
         }
 
@@ -94,7 +103,7 @@ namespace Lazywg.Common.Helper
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
-        public static T JsonSerialize<T>(string json)
+        public static T JsonDeserialize<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json);
         }
@@ -108,14 +117,28 @@ namespace Lazywg.Common.Helper
            return JObject.Parse(json);
         }
 
+        /// <summary>
+        /// 获取json 数组
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static JArray GetJArray(string json)
         {
             return JArray.Parse(json);
         }
     }
 
+    /// <summary>
+    /// JObject 扩展
+    /// </summary>
     public static class JObjectExtend {
 
+        /// <summary>
+        /// 根据key获取值
+        /// </summary>
+        /// <param name="jsonObj"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string GetKeyValue(this JObject jsonObj,string key) {
             JToken token = null;
             if (jsonObj.TryGetValue(key, out token))
