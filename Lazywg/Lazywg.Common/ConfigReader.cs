@@ -90,7 +90,7 @@ namespace Lazywg.Common
         /// 移除一项缓存
         /// </summary>
         /// <param name="key"></param>
-        public static void RemoveCache(string key) {
+        public static void RemoveConfig(string key) {
             lock (_locker)
             {
                 _dicts.Remove(key);
@@ -98,9 +98,9 @@ namespace Lazywg.Common
         }
 
         /// <summary>
-        /// 移除所有缓存
+        /// 移除所有缓存配置项
         /// </summary>
-        public static void RemoveAllCache()
+        public static void ClearConfig()
         {
             lock (_locker)
             {
