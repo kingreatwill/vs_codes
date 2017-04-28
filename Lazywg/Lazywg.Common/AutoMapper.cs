@@ -51,6 +51,12 @@ namespace Lazywg.Common
             return t;
         }
 
+        /// <summary>
+        /// 数据库表 行数据转实体对象
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="row"></param>
+        /// <returns></returns>
         public static E MapTo<E>(DataRow row)
         {
             E entiry = Activator.CreateInstance<E>();
@@ -85,6 +91,12 @@ namespace Lazywg.Common
             return entiry;
         }
 
+        /// <summary>
+        /// 字典数据转实体对象
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="dict"></param>
+        /// <returns></returns>
         public static E MapTo<E>(Dictionary<string, object> dict)
         {
             E entiry = Activator.CreateInstance<E>();
@@ -121,6 +133,13 @@ namespace Lazywg.Common
             return entiry;
         }
 
+
+        /// <summary>
+        /// 表数据转实体集合
+        /// </summary>
+        /// <typeparam name="E"></typeparam>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public static List<E> MapToList<E>(DataTable table)
         {
             List<E> list = new List<E>();
