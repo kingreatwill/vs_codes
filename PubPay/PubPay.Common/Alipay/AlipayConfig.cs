@@ -70,6 +70,18 @@ namespace PubPay.Common.Alipay
                 return ConfigurationManager.AppSettings["AlipayKey"];
             }
         }
+
+        /// <summary>
+        /// 服务网关
+        /// </summary>
+        public static string ServerUrl_Gatway
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["GatWay"];
+            }
+        }
+
         // 服务器异步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数,必须外网可以正常访问
         public static string NotifyUrl
         {
@@ -123,8 +135,82 @@ namespace PubPay.Common.Alipay
             }
         }
 
-        // 调用的接口名，无需修改
-        public static string ServiceApiName = "create_direct_pay_by_user";
+        /// <summary>
+        /// 即时支付 服务名
+        /// </summary>
+        public static string ApiName_InstantPayment = "create_direct_pay_by_user";
+
+        /// <summary>
+        /// 服务网关
+        /// </summary>
+        public static string ServerUrl_AppGatway
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppGatWay"];
+            }
+        }
+
+        /// <summary>
+        /// 应用ID
+        /// </summary>
+        public static string AppID
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppID"];
+            }
+        }
+
+        /// <summary>
+        /// 应用 RSA key
+        /// </summary>
+        public static string App_RSAKey
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppRSAKey"];
+            }
+        }
+
+        /// <summary>
+        /// 应用 RSA key file
+        /// </summary>
+        public static string App_RSAKeyFile
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppRSAKeyFile"];
+            }
+        }
+        /// <summary>
+        /// 应用 支付宝公钥
+        /// </summary>
+        public static string App_AlipayKey
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppAlipayKey"];
+            }
+        }
+
+        // 服务器异步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数,必须外网可以正常访问
+        public static string App_NotifyUrl
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppNotifyUrl"];
+            }
+        }
+
+        // 页面跳转同步通知页面路径，需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+        public static string App_ReturnUrl
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["AppReturnUrl"];
+            }
+        }
 
         //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 

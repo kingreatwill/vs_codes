@@ -70,19 +70,19 @@ namespace PubPay.Common.Alipay
             return Convert.ToBase64String(signatureBytes);
         }
 
-        private static string GetFileName(string fileName)
+        public static string GetFileName(string fileName)
         {
             string file = fileName;
             if (File.Exists(file))
             {
                 return file;
             }
-            file = AppDomain.CurrentDomain + fileName;
+            file = AppDomain.CurrentDomain.BaseDirectory + fileName;
             if (File.Exists(file))
             {
                 return file;
             }
-            file = AppDomain.CurrentDomain + @"Configs/" + fileName;
+            file = AppDomain.CurrentDomain.BaseDirectory + @"Configs/" + fileName;
             if (File.Exists(file))
             {
                 return file;
@@ -97,16 +97,9 @@ namespace PubPay.Common.Alipay
             //data = Encoding.UTF8.GetBytes(strKey);
             data = Convert.FromBase64String(strKey);
             //data = GetPem("RSA PRIVATE KEY", data);
-            try
-            {
-                RSACryptoServiceProvider rsa = DecodeRSAPrivateKey(data);
-                return rsa;
-            }
-            catch (Exception ex)
-            {
-                //    throw new AopException("EncryptContent = woshihaoren,zheshiyigeceshi,wanerde", ex);
-            }
-            return null;
+
+            RSACryptoServiceProvider rsa = DecodeRSAPrivateKey(data);
+            return rsa;
         }
 
         private static RSACryptoServiceProvider LoadCertificateFile(string filename)

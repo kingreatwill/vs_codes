@@ -8,17 +8,16 @@ using Jayrock.Json.Conversion;
 namespace Aop.Api.Util
 {
     /// <summary>
-    public abstract class AopUtils
-    {    /// AOP系统工具类。
+    /// AOP系统工具类
     /// </summary>
-
-
-        /// <summary>m>
+    public abstract class AopUtils
+    {
+        /// <summary>
+        /// AES加密
+        /// </summary>
+        /// <param name="encryptKey"></param>
         /// <param name="bizContent"></param>
         /// <param name="charset"></param>
-        ///  AES加密
-        /// </summary>
-        /// <param name="encryptKey"></para
         /// <returns></returns>
         public static string AesEncrypt(string encryptKey, string bizContent, string charset)
         {

@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubPay.Common", "PubPay\PubPay.Common\PubPay.Common.csproj", "{F279BE85-8812-43E9-98D8-04D47356DA82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubPay.WebUI", "PubPay\PubPay.WebUI\PubPay.WebUI.csproj", "{D27AEC68-971C-473A-8C56-9A0FE805293B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubPay.AopSdk", "PubPay\PubPay.AopSdk\PubPay.AopSdk.csproj", "{CE5EED0E-71A3-4F26-872D-E30BF1425063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PubPay.WebForm", "PubPay\PubPay.WebForm\PubPay.WebForm.csproj", "{448E075A-1752-4F1D-B991-B362181294DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33BB001C-0736-4083-AAF3-1C3ED735AA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BB001C-0736-4083-AAF3-1C3ED735AA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BB001C-0736-4083-AAF3-1C3ED735AA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BB001C-0736-4083-AAF3-1C3ED735AA82}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F279BE85-8812-43E9-98D8-04D47356DA82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F279BE85-8812-43E9-98D8-04D47356DA82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F279BE85-8812-43E9-98D8-04D47356DA82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F279BE85-8812-43E9-98D8-04D47356DA82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D27AEC68-971C-473A-8C56-9A0FE805293B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D27AEC68-971C-473A-8C56-9A0FE805293B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D27AEC68-971C-473A-8C56-9A0FE805293B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D27AEC68-971C-473A-8C56-9A0FE805293B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE5EED0E-71A3-4F26-872D-E30BF1425063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE5EED0E-71A3-4F26-872D-E30BF1425063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE5EED0E-71A3-4F26-872D-E30BF1425063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE5EED0E-71A3-4F26-872D-E30BF1425063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2D9CDE-D936-469E-98A0-81F2F583E905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2D9CDE-D936-469E-98A0-81F2F583E905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2D9CDE-D936-469E-98A0-81F2F583E905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2D9CDE-D936-469E-98A0-81F2F583E905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{448E075A-1752-4F1D-B991-B362181294DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448E075A-1752-4F1D-B991-B362181294DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448E075A-1752-4F1D-B991-B362181294DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448E075A-1752-4F1D-B991-B362181294DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

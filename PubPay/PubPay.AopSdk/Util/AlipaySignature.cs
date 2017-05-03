@@ -87,7 +87,6 @@ namespace Aop.Api.Util
             }
         }
 
-
         public static string RSASignCharSet(string data, string privateKeyPem, string charset, bool keyFromFile, string signType)
         {
 
@@ -137,7 +136,6 @@ namespace Aop.Api.Util
             return Convert.ToBase64String(signatureBytes);
         }
 
-
         public static bool RSACheckV1(IDictionary<string, string> parameters, string publicKeyPem, string charset)
         {
             string sign = parameters["sign"];
@@ -159,7 +157,7 @@ namespace Aop.Api.Util
             return RSACheckContent(signContent, sign, publicKeyPem, DEFAULT_CHARSET, "RSA");
         }
 
-	public static bool RSACheckV1(IDictionary<string, string> parameters, string publicKeyPem, string charset, string signType, bool keyFromFile)
+        public static bool RSACheckV1(IDictionary<string, string> parameters, string publicKeyPem, string charset, string signType, bool keyFromFile)
         {
             string sign = parameters["sign"];
 
@@ -189,7 +187,7 @@ namespace Aop.Api.Util
             return RSACheckContent(signContent, sign, publicKeyPem, charset, "RSA");
         }
 
-	public static bool RSACheckV2(IDictionary<string, string> parameters, string publicKeyPem, string charset, string signType, bool keyFromFile)
+        public static bool RSACheckV2(IDictionary<string, string> parameters, string publicKeyPem, string charset, string signType, bool keyFromFile)
         {
             string sign = parameters["sign"];
 
@@ -266,12 +264,12 @@ namespace Aop.Api.Util
 
                 if ("RSA2".Equals(signType))
                 {
-                        RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
-                        rsa.PersistKeyInCsp = false;
-                        RSACryptoServiceProviderExtension.LoadPublicKeyPEM(rsa, sPublicKeyPEM);
+                    RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+                    rsa.PersistKeyInCsp = false;
+                    RSACryptoServiceProviderExtension.LoadPublicKeyPEM(rsa, sPublicKeyPEM);
 
-                        bool bVerifyResultOriginal = rsa.VerifyData(Encoding.GetEncoding(charset).GetBytes(signContent), "SHA256", Convert.FromBase64String(sign));
-                        return bVerifyResultOriginal;
+                    bool bVerifyResultOriginal = rsa.VerifyData(Encoding.GetEncoding(charset).GetBytes(signContent), "SHA256", Convert.FromBase64String(sign));
+                    return bVerifyResultOriginal;
                 }
                 else
                 {
@@ -362,13 +360,13 @@ namespace Aop.Api.Util
 
             if (isDecrypt)
             {
-                return RSADecrypt(bizContent, cusPrivateKey, charset, signType ,keyFromFile);
+                return RSADecrypt(bizContent, cusPrivateKey, charset, signType, keyFromFile);
             }
 
             return bizContent;
         }
 
-        public static string encryptAndSign(string bizContent, string alipayPublicKey,
+        public static string EncryptAndSign(string bizContent, string alipayPublicKey,
                                         string cusPrivateKey, string charset, bool isEncrypt,
                                         bool isSign, string signType, bool keyFromFile)
         {
@@ -383,12 +381,12 @@ namespace Aop.Api.Util
                 sb.Append("<alipay>");
                 String encrypted = RSAEncrypt(bizContent, alipayPublicKey, charset, keyFromFile);
                 sb.Append("<response>" + encrypted + "</response>");
-                sb.Append("<encryption_type>"+signType+"</encryption_type>");
+                sb.Append("<encryption_type>" + signType + "</encryption_type>");
                 if (isSign)
                 {
                     String sign = RSASign(encrypted, cusPrivateKey, charset, signType, keyFromFile);
                     sb.Append("<sign>" + sign + "</sign>");
-                    sb.Append("<sign_type>"+signType+"</sign_type>");
+                    sb.Append("<sign_type>" + signType + "</sign_type>");
                 }
                 sb.Append("</alipay>");
             }
@@ -398,7 +396,7 @@ namespace Aop.Api.Util
                 sb.Append("<response>" + bizContent + "</response>");
                 String sign = RSASign(bizContent, cusPrivateKey, charset, signType, keyFromFile);
                 sb.Append("<sign>" + sign + "</sign>");
-                sb.Append("<sign_type>"+signType+"</sign_type>");
+                sb.Append("<sign_type>" + signType + "</sign_type>");
                 sb.Append("</alipay>");
             }
             else
@@ -408,7 +406,7 @@ namespace Aop.Api.Util
             return sb.ToString();
         }
 
-        public static string encryptAndSign(string bizContent, string alipayPublicKey,
+        public static string EncryptAndSign(string bizContent, string alipayPublicKey,
                                         string cusPrivateKey, string charset, bool isEncrypt,
                                         bool isSign)
         {
@@ -487,14 +485,18 @@ namespace Aop.Api.Util
                 throw new AopException("EncryptContent = " + content + ",charset = " + charset, ex);
             }
         }
+
         public static string RSAEncrypt(string content, string publicKeyPem, string charset, bool keyFromFile)
         {
             try
             {
                 string sPublicKeyPEM;
-                if (keyFromFile) {
+                if (keyFromFile)
+                {
                     sPublicKeyPEM = File.ReadAllText(publicKeyPem);
-                }else{
+                }
+                else
+                {
                     sPublicKeyPEM = "-----BEGIN PUBLIC KEY-----\r\n";
                     sPublicKeyPEM += publicKeyPem;
                     sPublicKeyPEM += "-----END PUBLIC KEY-----\r\n\r\n";
@@ -576,7 +578,7 @@ namespace Aop.Api.Util
             try
             {
                 RSACryptoServiceProvider rsaCsp = null;
-                 if (keyFromFile)
+                if (keyFromFile)
                 {
                     //文件读取
                     rsaCsp = LoadCertificateFile(privateKeyPem, signType);
@@ -652,6 +654,7 @@ namespace Aop.Api.Util
                 return null;
             }
         }
+
         private static RSACryptoServiceProvider LoadCertificateString(string strKey, string signType)
         {
             byte[] data = null;
@@ -773,16 +776,16 @@ namespace Aop.Api.Util
                 count = binr.ReadByte();	// data size in next byte
             else
                 if (bt == 0x82)
-                {
-                    highbyte = binr.ReadByte();	// data size in next 2 bytes
-                    lowbyte = binr.ReadByte();
-                    byte[] modint = { lowbyte, highbyte, 0x00, 0x00 };
-                    count = BitConverter.ToInt32(modint, 0);
-                }
-                else
-                {
-                    count = bt;		// we already have the data size
-                }
+            {
+                highbyte = binr.ReadByte(); // data size in next 2 bytes
+                lowbyte = binr.ReadByte();
+                byte[] modint = { lowbyte, highbyte, 0x00, 0x00 };
+                count = BitConverter.ToInt32(modint, 0);
+            }
+            else
+            {
+                count = bt;     // we already have the data size
+            }
 
             while (binr.ReadByte() == 0x00)
             {	//remove high order zeros in data

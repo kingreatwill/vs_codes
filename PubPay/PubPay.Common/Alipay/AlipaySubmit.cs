@@ -22,7 +22,7 @@ namespace PubPay.Common.Alipay
     {
         #region 字段
         //支付宝网关地址（新）
-        private static string GATEWAY_NEW = "https://mapi.alipay.com/gateway.do?";
+        private static string GATEWAY_NEW =AlipayConfig.ServerUrl_Gatway;
         //商户的私钥
         private static string _key = string.Empty;
         //商户的私钥

@@ -11,6 +11,7 @@
     <AssemblyName>PubPay.AopSdk</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -51,7 +54,6 @@
     <Compile Include="AopException.cs" />
     <Compile Include="AopObject.cs" />
     <Compile Include="AopResponse.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DefaultAopClient.cs" />
     <Compile Include="Domain\AccountFreeze.cs" />
     <Compile Include="Domain\AccountRecord.cs" />
@@ -2266,7 +2268,6 @@
     <Compile Include="Response\ZhimaDataFeedbackurlQueryResponse.cs" />
     <Compile Include="Response\ZhimaMerchantTestPracticeResponse.cs" />
     <Compile Include="SignItem.cs" />
-    <Compile Include="Test\PublicTest.cs" />
     <Compile Include="Util\AlipayEncrypt.cs" />
     <Compile Include="Util\AlipaySignature.cs" />
     <Compile Include="Util\AopUtils.cs" />
@@ -2277,10 +2278,6 @@
     <Compile Include="Util\WebUtils.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <None Include="Test\aop-sandbox-RSA-private-c#.pem" />
-    <None Include="Test\public-key.pem" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

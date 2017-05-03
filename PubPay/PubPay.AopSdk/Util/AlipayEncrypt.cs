@@ -11,7 +11,7 @@ namespace Aop.Api.Util
         /// <summary>
         /// 128位0向量
         /// </summary>
-        private static  byte[] AES_IV = initIv(16);
+        private static  byte[] AES_IV = InitIv(16);
 
         /// <summary>
         /// AES 加密
@@ -88,7 +88,7 @@ namespace Aop.Api.Util
         /// </summary>
         /// <param name="blockSize"></param>
         /// <returns></returns>
-        private static byte[] initIv(int blockSize)
+        private static byte[] InitIv(int blockSize)
         {
             byte[] iv = new byte[blockSize];
             for (int i = 0; i < blockSize; i++)
@@ -99,6 +99,4 @@ namespace Aop.Api.Util
 
         }
     }
-
-
 }

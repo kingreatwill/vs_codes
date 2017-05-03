@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NotifyPage.aspx.cs" Inherits="PubPay.WebUI.Alipay.NotifyPage" %>
