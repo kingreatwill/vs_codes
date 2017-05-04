@@ -5,9 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Lazywg.Common.Helper
 {
+    /// <summary>
+    /// http 请求帮助类
+    /// </summary>
     public class HttpHelper
     {
         /// <summary>
@@ -162,7 +166,7 @@ namespace Lazywg.Common.Helper
             StringBuilder builder = new StringBuilder();
             foreach (var item in paramDict)
             {
-                builder.AppendFormat("{0}={1}&", item.Key, item.Value);
+                builder.AppendFormat("{0}={1}&", item.Key,HttpUtility.UrlEncode(item.Value));
             }
             string result = builder.ToString();
             return result.Substring(0, result.Length - 1);
