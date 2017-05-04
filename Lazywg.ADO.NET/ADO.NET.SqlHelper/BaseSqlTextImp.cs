@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Linq;
 
 namespace ADO.NET.SqlHelper
 {
@@ -33,6 +34,27 @@ namespace ADO.NET.SqlHelper
         {
             string sql = SqlTextHelper.GetInsertSqlText<T>(t);
             return SqlHelper.ExecuteNonQuery(GetConnectStr(), CommandType.Text, sql) > 0;
+        }
+
+        /// <summary>
+        /// 批量添加
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual bool BatchInsert<T>(List<T> list)
+        {
+            PagerHelper page = new PagerHelper() { DataCount = list.Count, PageSize = 20000 };
+            int count = page.PageCount;
+            int insertCount = 0;
+            for (int i = 1; i < count + 1; i++)
+            {
+                page.PageIndex = i;
+                List<T> pageList = list.Skip(page.StartIndex).Take(page.PageSize).ToList();
+                string sql = SqlTextHelper.GetBatchInsertSqlText<T>(pageList);
+                insertCount += SqlHelper.ExecuteNonQuery(GetConnectStr(), CommandType.Text, sql);
+            }
+            return insertCount > 0;
         }
 
         /// <summary>

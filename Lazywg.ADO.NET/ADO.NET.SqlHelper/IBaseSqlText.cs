@@ -16,6 +16,14 @@ namespace ADO.NET.SqlHelper
         bool Insert<T>(T t);
 
         /// <summary>
+        /// 批量添加
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        bool BatchInsert<T>(List<T> list);
+
+        /// <summary>
         /// 删除
         /// </summary>
         /// <typeparam name="T"></typeparam>

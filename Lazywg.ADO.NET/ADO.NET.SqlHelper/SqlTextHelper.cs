@@ -36,6 +36,30 @@ namespace ADO.NET.SqlHelper
             return GetSqlInsert(type.Name, paramProps) + GetSqlInsertValues<T>(paramProps, t);
         }
 
+        public static string GetBatchInsertSqlText<T>(List<T> list)
+        {
+            Type type = typeof(T);
+            PropertyInfo[] props = type.GetProperties();
+            List<PropertyInfo> paramProps = new List<PropertyInfo>();
+            foreach (var item in props)
+            {
+                SqlParamAttribute attr = item.GetCustomAttribute(typeof(SqlParamAttribute)) as SqlParamAttribute;
+                if (attr == null || attr.IsParam == true)
+                {
+                    paramProps.Add(item);
+                }
+            }
+
+            StringBuilder sql = new StringBuilder();
+            foreach (var item in list)
+            {
+                sql.Append(GetSqlInsert(type.Name, paramProps));
+                sql.Append(GetSqlInsertValues<T>(paramProps, item));
+                sql.AppendLine();
+            }
+            return sql.ToString();
+        }
+
         /// <summary>
         /// 获取更新命令文本
         /// </summary>
@@ -70,7 +94,7 @@ namespace ADO.NET.SqlHelper
                 throw new ArgumentNullException(string.Format("{0}的主键不可为空", type.Name));
             }
 
-            return string.Format(" update dbo.[{0}] {1} {2}", type.Name,GetSqlUpdateSet<T>(paramProps, t),GetSqlWhere<T>(pkProps, t));
+            return string.Format(" update dbo.[{0}] {1} {2}", type.Name, GetSqlUpdateSet<T>(paramProps, t), GetSqlWhere<T>(pkProps, t));
         }
 
         /// <summary>
@@ -83,7 +107,7 @@ namespace ADO.NET.SqlHelper
         public static string GetUpdateSqlText<T>(List<SqlParam> update, List<SqlParam> where)
         {
             Type type = typeof(T);
-            return string.Format(" update dbo.[{0}] {1} {2} ", type.Name, GetSqlUpdateSet(update),GetSqlWhere(where));
+            return string.Format(" update dbo.[{0}] {1} {2} ", type.Name, GetSqlUpdateSet(update), GetSqlWhere(where));
         }
 
         /// <summary>
@@ -165,7 +189,7 @@ namespace ADO.NET.SqlHelper
                     paramProps.Add(item);
                 }
             }
-            return string.Format(" select {0} from(select {0},row_number()over(order by {1}) as RowIndex from dbo.[{2}] where 1=1 {3}) as t where RowIndex betwen {4} and {5} ", GetSqlField(paramProps), pager.Order, type.Name,sqlWhere, pager.StartIndex, pager.EndIndex);
+            return string.Format(" select {0} from(select {0},row_number()over(order by {1}) as RowIndex from dbo.[{2}] where 1=1 {3}) as t where RowIndex betwen {4} and {5} ", GetSqlField(paramProps), pager.Order, type.Name, sqlWhere, pager.StartIndex, pager.EndIndex);
 
         }
 
@@ -315,12 +339,12 @@ namespace ADO.NET.SqlHelper
 
         private static bool GetSqlTypeIsNeedChar(DbType type)
         {
-            return type == DbType.String || type == DbType.DateTime || type == DbType.Boolean||type==DbType.Guid||type==DbType.Date;
+            return type == DbType.String || type == DbType.DateTime || type == DbType.Boolean || type == DbType.Guid || type == DbType.Date;
         }
 
         private static bool GetSqlTypeIsNeedChar(Type type)
         {
-            return type == typeof(DateTime) || type == typeof(string) || type == typeof(bool) || type==typeof(Guid);
+            return type == typeof(DateTime) || type == typeof(string) || type == typeof(bool) || type == typeof(Guid);
         }
     }
 }
