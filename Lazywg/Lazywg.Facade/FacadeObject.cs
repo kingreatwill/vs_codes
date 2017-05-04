@@ -8,12 +8,7 @@ namespace Lazywg.Facade
 {
     public abstract class FacadeObject : IDisposable
     {
-        private string _name;
-
-        public string Name {
-            get { return this._name; }
-            set { this._name = value; }
-        }
+        public string Name { get; set; }
 
         public void Dispose()
         {

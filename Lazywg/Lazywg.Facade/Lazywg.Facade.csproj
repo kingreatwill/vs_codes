@@ -36,6 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Libs\NewtonJson\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -47,12 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicAssemblyBuilder.cs" />
     <Compile Include="FacadeContainer.cs" />
     <Compile Include="FacadeObject.cs" />
+    <Compile Include="FacadeSet.cs" />
     <Compile Include="FilterDispatcher.cs" />
     <Compile Include="Oneway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransparentProxy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lazywg.Common\Lazywg.Common.csproj">
+      <Project>{d550eb0a-d380-45d3-96e3-754f5df8afb6}</Project>
+      <Name>Lazywg.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

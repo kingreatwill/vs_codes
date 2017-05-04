@@ -113,7 +113,7 @@ namespace Lazywg.Facade
             }
         }
 
-        public void SetRealProxy(FacadeObject facadeObject)
+        public void SetRealProxy(object facadeObject)
         {
             _realProxy = facadeObject;
         }

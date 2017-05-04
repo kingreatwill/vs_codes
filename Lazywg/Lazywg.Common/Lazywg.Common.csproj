@@ -60,10 +60,12 @@
     <Compile Include="Helper\CookieHelper.cs" />
     <Compile Include="Extend\DateTimeExtend.cs" />
     <Compile Include="Helper\DictionaryHelper.cs" />
+    <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\FormateHelper.cs" />
     <Compile Include="Helper\HttpHelper.cs" />
     <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\QRCodeHelper.cs" />
+    <Compile Include="Helper\TypeHelper.cs" />
     <Compile Include="SerializableDictionary.cs" />
     <Compile Include="Helper\SqlHelper.cs" />
     <Compile Include="LazywgConfigs.cs" />
@@ -79,10 +81,10 @@
     <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="TestHandler.cs" />
     <Compile Include="Helper\LogHelper.cs" />
-    <Compile Include="Request\MethodCall.cs" />
-    <Compile Include="Request\RequestMethod.cs" />
-    <Compile Include="Request\RequestMethodConfig.cs" />
-    <Compile Include="Request\RequestParseHelper.cs" />
+    <Compile Include="Request\MethodHelper.cs" />
+    <Compile Include="Request\Method.cs" />
+    <Compile Include="Request\MethodConfig.cs" />
+    <Compile Include="Helper\RequestParseHelper.cs" />
     <Compile Include="Helper\XmlHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

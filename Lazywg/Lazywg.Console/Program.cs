@@ -53,32 +53,34 @@ namespace Lazywg.Console
             //Dictionary<string, object> dict2 = JsonHelper.JSONDeserialize<Dictionary<string, object>>(json1);
             //Dictionary<string, object> dict3 = JsonHelper.JsonDeserialize<Dictionary<string, object>>(json1);
 
-            //RequestMethods methods = new RequestMethods();
-            //methods.Methods.Add(new RequestMethod() { Assembly = "Lazywg.Console", ClassType = "Lazywg.Console.Algorithm", ClassName = "Algorithm", MethodCode = "1001", MethodName = "Write", MethodDesc = "循环打印" });
-            //methods.Methods.Add(new RequestMethod() { Assembly = "Lazywg.Console", ClassType = "Lazywg.Console.Algorithm", ClassName = "Algorithm", MethodCode = "1002", MethodName = "StrOrder", MethodDesc = "字符串排序" });
-            //methods.Methods.Add(new RequestMethod() { Assembly = "Lazywg.Console", ClassType = "Lazywg.Console.Algorithm", ClassName = "Algorithm", MethodCode = "1003", MethodName = "RepeatCopyStr", MethodDesc = "重复复制字符串" });
+            Methods methods = new Methods();
+            methods.MethodList.Add(new Method() { Assembly = "Lazywg.Console", NameSpace = "Lazywg.Console", ClassName = "Algorithm", MethodCode = "1001", MethodName = "Write", MethodDesc = "循环打印" });
+            methods.MethodList.Add(new Method() { Assembly = "Lazywg.Console", NameSpace = "Lazywg.Console", ClassName = "Algorithm", MethodCode = "1002", MethodName = "StrOrder", MethodDesc = "字符串排序" });
+            methods.MethodList.Add(new Method() { Assembly = "Lazywg.Console", NameSpace = "Lazywg.Console", ClassName = "Algorithm", MethodCode = "1003", MethodName = "RepeatCopyStr", MethodDesc = "重复复制字符串" });
 
-            //XmlHelper.SerializeToXml(methods, @"D:\method.config");
+            XmlHelper.SerializeToXml(methods, @"D:\method.config");
 
-            //RequestMethods methods2 = XmlHelper.DeserializeFromXml<RequestMethods>(@"D:\method.config");
+            //Methods methods2 = XmlHelper.DeserializeFromXml<Methods>(@"D:\method.config");
 
-            RequestMethodConfig.LoadConfig("method.config");
-
-            Dictionary<string, object> request = new Dictionary<string, object>();
-           
-            request.Add("MethodCode", "1001");
+            //MethodConfig.LoadConfig("method.config");
 
             //Dictionary<string, object> request = new Dictionary<string, object>();
-            //request.Add("Params", "{'number':100}");
+           
             //request.Add("MethodCode", "1001");
 
-            Dictionary<string, object> parms = new Dictionary<string, object>();
-            parms.Add("number",100);
+            ////Dictionary<string, object> request = new Dictionary<string, object>();
+            ////request.Add("Params", "{'number':100}");
+            ////request.Add("MethodCode", "1001");
 
-            RequestMethod method = RequestMethodConfig.GetMethod(request["MethodCode"].ToString());
+            //Dictionary<string, object> parms = new Dictionary<string, object>();
+            //parms.Add("number",100);
 
-            object result = MethodCall.CallMethod(method, parms);
-            System.Console.WriteLine(result);
+            //Method method = MethodConfig.GetMethod(request["MethodCode"].ToString());
+
+            //object result = MethodCall.CallMethod(method, parms);
+            //System.Console.WriteLine(result);
+
+
             System.Console.ReadLine();
 
         }

@@ -11,7 +11,7 @@ namespace Lazywg.Common.Request
     /// 请求方法
     /// </summary>
     [XmlRoot("Method")]
-    public class RequestMethod
+    public class Method
     {
         /// <summary>
         /// 方法描述
@@ -38,10 +38,10 @@ namespace Lazywg.Common.Request
         public string Assembly { get; set; }
 
         /// <summary>
-        /// 命名空间 + 类名
+        /// 命名空间
         /// </summary>
-        [XmlAttribute("ClassType")]
-        public string ClassType { get; set; }
+        [XmlAttribute("NameSpace")]
+        public string NameSpace { get; set; }
 
         /// <summary>
         /// 类名
@@ -51,16 +51,16 @@ namespace Lazywg.Common.Request
     }
 
     [XmlRoot("MethodsConfig")]
-    public class RequestMethods
+    public class Methods
     {
 
         [XmlArray("Methods")]
-        [XmlArrayItem("Item")]
-        public List<RequestMethod> Methods { get; set; }
+        [XmlArrayItem("Method")]
+        public List<Method> MethodList { get; set; }
 
-        public RequestMethods()
+        public Methods()
         {
-            Methods = new List<RequestMethod>();
+            MethodList = new List<Method>();
         }
     }
 }

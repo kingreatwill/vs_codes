@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Lazywg.Common.Request
+namespace Lazywg.Common.Helper
 {
     /// <summary>
     /// 请求解析数据帮助
