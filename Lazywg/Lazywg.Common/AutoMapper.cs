@@ -40,7 +40,7 @@ namespace Lazywg.Common
                     propName = attr.Name;
                 }
 
-                var prop = eprops.Where(it => string.Compare(it.Name, propName, true) == 0);
+                var prop = eprops.Where(it => string.Compare(it.Name, propName, false) == 0);
                 if (prop != null && prop.Count() > 0)
                 {
                     object value = prop.First().GetValue(entity);
@@ -72,10 +72,16 @@ namespace Lazywg.Common
             }
             foreach (var item in toProps)
             {
-                object value = row[item.Name];
+                string name = item.Name;
+                MapAttribute attr = item.GetCustomAttribute(typeof(MapAttribute)) as MapAttribute;
+                if (attr != null)
+                {
+                    name = attr.Name;
+                }
+                object value = row[name] == null ? row[item.Name] : row[name];
                 if (value != null)
                 {
-                    if (value.GetType()!= typeof(DBNull))
+                    if (value.GetType() != typeof(DBNull))
                     {
                         if (item.PropertyType == typeof(Guid))
                         {
@@ -113,18 +119,27 @@ namespace Lazywg.Common
 
             foreach (var item in toProps)
             {
-                object value = null;
-                if (dict.TryGetValue(item.Name, out value))
+                string name = item.Name;
+                MapAttribute attr = item.GetCustomAttribute(typeof(MapAttribute)) as MapAttribute;
+                if (attr != null)
                 {
-                    if (item.PropertyType==typeof(Guid))
+                    name = attr.Name;
+                }
+                object value = null;
+                bool have = dict.TryGetValue(name, out value) ? true : dict.TryGetValue(item.Name, out value);
+                if (value != null)
+                {
+                    if (item.PropertyType == typeof(Guid))
                     {
                         item.SetValue(entiry, new Guid(value.ToString()));
-                    }else
+                    }
+                    else
                     {
                         item.SetValue(entiry, value);
                     }
                     continue;
                 }
+
                 if (item.PropertyType == typeof(DateTime))
                 {
                     item.SetValue(entiry, LazywgConfigs.DefaultTime);
@@ -151,5 +166,25 @@ namespace Lazywg.Common
             }
             return list;
         }
+    }
+
+    /// <summary>
+    /// 实体属性标记映射
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class MapAttribute : Attribute
+    {
+        /// <summary>
+        /// 映射的属性名称
+        /// </summary>
+        public string Name { get; set; }
+    }
+
+    /// <summary>
+    /// 实体属性标记不映射
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+    public class NotMapAttribute : Attribute
+    {
     }
 }

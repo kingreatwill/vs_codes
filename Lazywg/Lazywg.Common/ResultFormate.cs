@@ -1,18 +1,13 @@
 ﻿using Lazywg.Common.Helper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lazywg.Common
 {
     /// <summary>
     /// 返回数据特性
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     public class ResultFormateAttribute : Attribute
     {
         /// <summary>
@@ -31,6 +26,7 @@ namespace Lazywg.Common
     /// </summary>
     public enum ResultType
     {
+        BaseResult,
         ResultPageList,
         ResultList,
         ResultObject,
@@ -51,6 +47,11 @@ namespace Lazywg.Common
         /// 返回信息编码
         /// </summary>
         public string Code { get; set; }
+
+        /// <summary>
+        ///返回结果
+        /// </summary>
+        public bool Result { get; set; }
     }
 
     /// <summary>
